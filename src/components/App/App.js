@@ -33,7 +33,8 @@ class App extends Component {
             ],
             showedFavs: false,
             showedBucket: false,
-            showedOrderModal: false, 
+            showedOrderModal: false,
+            orders: []
         }
     }
 
@@ -95,6 +96,12 @@ class App extends Component {
         }
     }
 
+    createOrders = (order) => {
+        this.setState(({orders}) => ({
+            orders: [...orders, order]
+        }))
+    }
+
     render() {
 
         const {products, groups, showedFavs, showedBucket, showedOrderModal} = this.state
@@ -145,7 +152,11 @@ class App extends Component {
                 totalInBucket={totalInBucket}/>
             <OrderModal
                 onShowed={this.onShowed}
-                showedOrderModal={showedOrderModal}/>
+                showedOrderModal={showedOrderModal}
+                createOrders={this.createOrders}
+                itemBucket={itemBucket}
+                clearElems={this.clearElems}
+                totalInBucket={totalInBucket}/>
         </Container>
         )
     }
