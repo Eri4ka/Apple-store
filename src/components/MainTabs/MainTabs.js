@@ -35,7 +35,7 @@ class MainTabs extends Component {
 
     render() {
 
-        const {groups, products, onAddFavs, addToBucket, deleteFromBucket} = this.props
+        const {groups, products, onAddFavs, addToBucket, deleteFromBucket, onFavAlert} = this.props
         const {activeTab, sort} = this.state
 
         const tab = groups.map(item => {
@@ -58,6 +58,7 @@ class MainTabs extends Component {
                         onAddFavs={() => onAddFavs(item.id)}
                         addToBucket={() => addToBucket(item.id)}
                         deleteFromBucket={() => deleteFromBucket(item.id)}
+                        onFavAlert={onFavAlert}
                         key={item.id}
                         products={item}/>
                     )

@@ -6,6 +6,7 @@ import Favorites from '../Favorites/Favorites';
 import Bucket from '../Bucket/Bucket';
 import OrderModal from '../OrderModal/OrderModal'
 import Footer from '../Footer/Footer';
+import Alert from '../Alert/Alert';
 
 class App extends Component {
 
@@ -34,7 +35,8 @@ class App extends Component {
             showedFavs: false,
             showedBucket: false,
             showedOrderModal: false,
-            orders: []
+            orders: [],
+            favAlert: false
         }
     }
 
@@ -102,9 +104,15 @@ class App extends Component {
         }))
     }
 
+    onFavAlert = (val) => {
+        this.setState({
+            favAlert: val
+        })
+    }
+
     render() {
 
-        const {products, groups, showedFavs, showedBucket, showedOrderModal} = this.state
+        const {products, groups, showedFavs, showedBucket, showedOrderModal, favAlert} = this.state
 
         const itemFavs = products.filter(item => {
                 if (item.favorite) {
@@ -131,7 +139,8 @@ class App extends Component {
                 groups={groups}
                 onAddFavs={this.onAddFavs}
                 addToBucket={this.addToBucket}
-                deleteFromBucket={this.deleteFromBucket}/>
+                deleteFromBucket={this.deleteFromBucket}
+                onFavAlert={this.onFavAlert}/>
             <Footer/>
             <Favorites 
                 onShowed={this.onShowed} 
@@ -157,6 +166,9 @@ class App extends Component {
                 itemBucket={itemBucket}
                 clearElems={this.clearElems}
                 totalInBucket={totalInBucket}/>
+            <Alert
+                favAlert={favAlert}
+                onFavAlert={this.onFavAlert}/>
         </Container>
         )
     }

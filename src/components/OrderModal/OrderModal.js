@@ -20,7 +20,7 @@ class OrderModal extends Component {
             products: ''
         },
         isLoading: false,
-        isSending: false 
+        isSending: false
     }
 
     onShowed = (prop, val) => {
@@ -131,7 +131,10 @@ class OrderModal extends Component {
                         validated={this.state.validated}
                         isLoading={this.state.isLoading}
                         createOrder={this.createOrder}
-                        sendForm={this.sendForm}/>
+                        sendForm={this.sendForm}
+                        render={isLoading => (
+                            <OrderButton isLoading={isLoading}/>
+                        )}/>
                 )
             }
         }
@@ -144,10 +147,7 @@ class OrderModal extends Component {
                 
             </Modal.Header>
             <Modal.Body>
-               
-                
-            {orderform()}
-
+                {orderform()}
             </Modal.Body>
         </Modal>
         </>
@@ -279,7 +279,8 @@ class OrderForm extends Component {
                     </Form.Group>
                     <Row className="mt-3">
                         <Col>
-                            <OrderButton isLoading={this.props.isLoading}/>
+                            {/* <OrderButton isLoading={this.props.isLoading}/> */}
+                            {this.props.render(this.props.isLoading)}
                         </Col>
                     </Row>
                 </Form>

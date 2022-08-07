@@ -8,6 +8,12 @@ import './MainContent.css'
 
 class MainContent extends Component {
 
+    handeClick = () => {
+        this.props.onAddFavs()
+
+        if (!this.props.products.favorite) this.props.onFavAlert(true);        
+    }
+
     render() {
         const {name, img, price, favorite, bucket} = this.props.products
 
@@ -33,7 +39,7 @@ class MainContent extends Component {
                     <Card.Title>{name}</Card.Title>
                     <div className="d-flex justify-content-between mt-3 align-items-center">
                         <Card.Text className="text-center text-primary" as="h3">{price + ' \u20bd'}</Card.Text>
-                        <FontAwesomeIcon icon={favorite ? fasHeart: farHeart} className="fa-2x ic" onClick={this.props.onAddFavs}/>
+                        <FontAwesomeIcon icon={favorite ? fasHeart: farHeart} className="fa-2x ic" onClick={this.handeClick}/>
                         {toggleBucket()}
                     </div>
                 </Card.Body>
