@@ -169,7 +169,7 @@ class OrderForm extends Component {
                     </Col>
                     <Col>
                         <h5 className="m-0">Сумма: 
-                            <span className="text-primary"> {this.props.itemBucket.reduce((sum, product) => sum + product.price, 0)}</span>
+                            <span className="text-primary"> {this.props.itemBucket.reduce((sum, product) => sum + product.price * product.bucket, 0)}</span>
                         </h5>
                     </Col>
                 </Row>
